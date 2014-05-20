@@ -43,3 +43,20 @@ func TestSendingAppygram(t *testing.T) {
 		t.Errorf("Appygram not sent successfully")
 	}
 }
+
+func TestSendingAppygramTrace(t *testing.T) {
+	client := getClient()
+	btrace := MakeErrorBackTrace(make([]byte, 1))
+	tr := AppygramTrace{Class: "appygram", Backtrace: btrace}
+	tr.Name = "Test Gopher"
+	tr.Email = "gopher@gopher.net"
+	tr.Phone = "8889991234"
+	tr.Message = "This is a test message"
+	status, err := client.sendAppygramTrace(tr)
+	if err != nil {
+		t.Errorf("Error from appygram client %s", err.Error())
+	}
+	if status.OK != true {
+		t.Errorf("Appygram trace not sent successfully")
+	}
+}

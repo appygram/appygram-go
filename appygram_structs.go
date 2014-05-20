@@ -12,6 +12,12 @@ type AppygramMessage struct {
 	App_json string
 }
 
+type AppygramTrace struct {
+	AppygramMessage
+	Class     string
+	Backtrace [][]string
+}
+
 type AppygramResult struct {
 	OK bool
 }

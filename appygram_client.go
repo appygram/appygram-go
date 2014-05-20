@@ -17,3 +17,7 @@ func (ac *AppygramClient) getTopics() []string {
 func (ac *AppygramClient) sendAppygramMessage(m AppygramMessage) (AppygramResult, error) {
 	return AppygramResult{false}, nil
 }
+
+func (ac *AppygramClient) sendAppygramTrace(s AppygramTrace) (AppygramResult, error) {
+	return AppygramResult{false}, nil
+}
