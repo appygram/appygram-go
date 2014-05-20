@@ -1,7 +1,6 @@
 package appygram
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"testing"
@@ -9,7 +8,6 @@ import (
 
 func getApiKey() string {
 	key := os.Getenv("API_KEY")
-	fmt.Println(key)
 	if key == "" {
 		panic("Please set API_KEY in the shell environment.")
 	}
@@ -25,5 +23,8 @@ func TestGetTopics(t *testing.T) {
 	topics := client.getTopics()
 	if len(topics) == 0 {
 		t.Errorf("Topics should have length > 0")
+	}
+	if topics[0] != "Feedback" {
+		t.Errorf("Topics[0] should be Feedback, not %s", topics[0])
 	}
 }
