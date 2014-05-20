@@ -21,3 +21,13 @@ type AppygramTrace struct {
 type AppygramResult struct {
 	OK bool
 }
+
+type AppygramTopic struct {
+	Name string
+	Id   string
+}
+
+type AppygramTopics struct {
+	AppygramResult
+	Topics []AppygramTopic
+}

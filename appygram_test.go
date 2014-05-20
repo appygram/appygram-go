@@ -20,12 +20,17 @@ func getClient() AppygramClient {
 
 func TestGetTopics(t *testing.T) {
 	client := getClient()
-	topics := client.getTopics()
-	if len(topics) == 0 {
-		t.Errorf("Topics should have length > 0")
+	topics, err := client.getTopics()
+	if err != nil {
+		t.Errorf("Topics top level error %s", err.Error())
+		t.FailNow()
 	}
-	if topics[0] != "Feedback" {
-		t.Errorf("Topics[0] should be Feedback, not %s", topics[0])
+	if len(topics.Topics) == 0 {
+		t.Errorf("Topics should have length > 0")
+		t.FailNow()
+	}
+	if topics.Topics[0].Name != "Feedback" {
+		t.Errorf("Topics[0].Name should be Feedback, not %s", topics.Topics[0])
 	}
 }
 
