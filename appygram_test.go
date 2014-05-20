@@ -28,3 +28,18 @@ func TestGetTopics(t *testing.T) {
 		t.Errorf("Topics[0] should be Feedback, not %s", topics[0])
 	}
 }
+
+func TestSendingAppygram(t *testing.T) {
+	client := getClient()
+	m := AppygramMessage{
+		Name: "Test Gopher", Email: "gopher@gopher.net",
+		Phone: "8889991234", Message: "This is a test message",
+	}
+	status, err := client.sendAppygramMessage(m)
+	if err != nil {
+		t.Errorf("Error from appygram client %s", err.Error())
+	}
+	if status.OK != true {
+		t.Errorf("Appygram not sent successfully")
+	}
+}
