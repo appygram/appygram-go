@@ -21,7 +21,7 @@ func (ac *AppygramClient) buildRequest(method string, urlStr string, reader io.R
 	return
 }
 
-func (ac *AppygramClient) getTopics() (at AppygramTopics, err error) {
+func (ac *AppygramClient) GetTopics() (at AppygramTopics, err error) {
 	url := base + "/topics/" + ac.ApiKey
 	request, err := ac.buildRequest("GET", url, nil)
 	response, err := ac.HttpClient.Do(request)
@@ -42,7 +42,7 @@ func (ac *AppygramClient) getTopics() (at AppygramTopics, err error) {
 	return
 }
 
-func (ac *AppygramClient) sendAppygramMessage(m AppygramMessage) (ar AppygramResult, err error) {
+func (ac *AppygramClient) SendAppygramMessage(m AppygramMessage) (ar AppygramResult, err error) {
 	url := base + "/appygrams"
 	withKey := AppygramMessageWithKey{AppygramMessage: m, ApiKey: ac.ApiKey}
 	bytes, err := json.Marshal(withKey)
@@ -67,7 +67,7 @@ func (ac *AppygramClient) sendAppygramMessage(m AppygramMessage) (ar AppygramRes
 	return
 }
 
-func (ac *AppygramClient) sendAppygramTrace(s AppygramTraceWithMessage) (ar AppygramResult, err error) {
+func (ac *AppygramClient) SendAppygramTrace(s AppygramTraceWithMessage) (ar AppygramResult, err error) {
 	url := base + "/traces"
 	withKey := AppygramTraceWithKey{AppygramTraceWithMessage: s, ApiKey: ac.ApiKey}
 	bytes, err := json.Marshal(withKey)

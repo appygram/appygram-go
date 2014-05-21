@@ -20,7 +20,7 @@ func getClient() AppygramClient {
 
 func TestGetTopics(t *testing.T) {
 	client := getClient()
-	topics, err := client.getTopics()
+	topics, err := client.GetTopics()
 	if err != nil {
 		t.Errorf("Topics top level error %s", err.Error())
 		t.FailNow()
@@ -41,7 +41,7 @@ func TestSendingAppygram(t *testing.T) {
 		Phone: "8889991234", Message: "This is a test message",
 		Topic: "Feedback",
 	}
-	status, err := client.sendAppygramMessage(m)
+	status, err := client.SendAppygramMessage(m)
 	if err != nil {
 		t.Errorf("Error from appygram client %s", err.Error())
 	}
@@ -60,7 +60,7 @@ func TestSendingAppygramTrace(t *testing.T) {
 		Topic: "Exception",
 	}
 	trm := AppygramTraceWithMessage{AppygramMessage: m, Trace: tr}
-	status, err := client.sendAppygramTrace(trm)
+	status, err := client.SendAppygramTrace(trm)
 	if err != nil {
 		t.Errorf("Error from appygram client %s", err.Error())
 	}
