@@ -48,7 +48,7 @@ client := appygram.Client("myapikey12345", urlfetch.Client(c))
 
 ####Getting Appygram Topics
 
-Appygram Topics are how you route differenet messages to different
+Appygram Topics are how you route different messages to different
 places.
 
 ```go
@@ -93,4 +93,44 @@ response, err := appygram.SendAppygramTrace(appygramAppygramTraceWithMessage)
 //handle err and response accordingly
 ```
 
+###Notes on Concurrency
+
+This is a blocking http client. All requests will block the current
+routine. It is up to the caller to handle their concurrency needs.
+
+If you want the request to happen asynchronously do something like this:
+
+```go
+...
+go func() {
+  appygramMessage := appygram.AppygramMessage{
+    Name: "Gopher John", Topic: "Feedback",
+    Message: "Your App is a lot of fun!!", Email: "john@gophernet.net",
+  }
+  var response appygram.AppygramResult
+  response, err := appygram.SendAppygramMessage(appygramMessage)
+  //handle err and response accordingly
+}()
+```
+
+###Developing and Testing!
+
+We love PRs and issues! If you are having a problem feel free to open up
+and issue.
+
+If you need to test locally please do the following:
+
+```
+export API_KEY="SOME API KEY FOR AN APP YOU CONTROL"
+go test
+```
+
+If you need to run a particular test case, use the `-run` option
+
+Example: Running just the topics test
+
+```
+export API_KEY="SOME API KEY FOR AN APP YOU CONTROL"
+go test -run GetTopics
+```
 
