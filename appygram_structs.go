@@ -1,15 +1,15 @@
 package appygram
 
 type AppygramMessage struct {
-	Name     string
-	Email    string
-	Phone    string
-	Message  string
-	Platform string
-	Software string
-	Summary  string
-	Topic    string
-	App_json string
+	Name     string `json:"name,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Phone    string `json:"phone,omitempty"`
+	Message  string `json:"message,omitempty"`
+	Platform string `json:"platform,omitempty"`
+	Software string `json:"software,omitempty"`
+	Summary  string `json:"summary,omitempty"`
+	Topic    string `json:"topic,omitempty"`
+	AppJson  string `json:"app_json,omitempty"`
 }
 
 type AppygramTrace struct {
@@ -30,4 +30,9 @@ type AppygramTopic struct {
 type AppygramTopics struct {
 	AppygramResult
 	Topics []AppygramTopic
+}
+
+type AppygramMessageWithKey struct {
+	ApiKey string `json:"api_key",omitempty`
+	AppygramMessage
 }

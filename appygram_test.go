@@ -39,6 +39,7 @@ func TestSendingAppygram(t *testing.T) {
 	m := AppygramMessage{
 		Name: "Test Gopher", Email: "gopher@gopher.net",
 		Phone: "8889991234", Message: "This is a test message",
+		Topic: "Feedback",
 	}
 	status, err := client.sendAppygramMessage(m)
 	if err != nil {
@@ -57,6 +58,7 @@ func TestSendingAppygramTrace(t *testing.T) {
 	tr.Email = "gopher@gopher.net"
 	tr.Phone = "8889991234"
 	tr.Message = "This is a test message"
+	tr.Topic = "Error"
 	status, err := client.sendAppygramTrace(tr)
 	if err != nil {
 		t.Errorf("Error from appygram client %s", err.Error())
