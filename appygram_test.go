@@ -15,7 +15,7 @@ func getApiKey() string {
 }
 
 func getClient() AppygramClient {
-	return Client(getApiKey(), http.Client{})
+	return Client(getApiKey(), &http.Client{})
 }
 
 func TestGetTopics(t *testing.T) {

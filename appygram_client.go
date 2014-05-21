@@ -12,7 +12,7 @@ const base = "https://arecibo.appygram.com"
 
 type AppygramClient struct {
 	ApiKey     string
-	HttpClient http.Client
+	HttpClient *http.Client
 }
 
 func (ac *AppygramClient) buildRequest(method string, urlStr string, reader io.Reader) (r *http.Request, err error) {
