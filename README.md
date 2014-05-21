@@ -9,7 +9,7 @@ Appygram go http client
 First appygram.go must be in your GOPATH. Do this where you like.
 
 ```
-go get github.com/wlaurance/appygram.go
+go get github.com/wlaurance/appygram-go
 ```
 
 ###Usage
