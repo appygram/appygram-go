@@ -71,7 +71,7 @@ response, err := appygram.SendAppygramMessage(appygramMessage)
 //handle err and response accordingly
 ```
 
-###Sending Appygram Trace (In Progress)
+####Sending Appygram Trace (In Progress)
 
 An Appygram trace is intended for machine generated stack traces or
 errors.
