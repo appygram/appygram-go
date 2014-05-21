@@ -116,7 +116,7 @@ go func() {
 ###Developing and Testing!
 
 We love PRs and issues! If you are having a problem feel free to open up
-and issue.
+an issue.
 
 If you need to test locally please do the following:
 
