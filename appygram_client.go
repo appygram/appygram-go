@@ -67,6 +67,27 @@ func (ac *AppygramClient) sendAppygramMessage(m AppygramMessage) (ar AppygramRes
 	return
 }
 
-func (ac *AppygramClient) sendAppygramTrace(s AppygramTrace) (AppygramResult, error) {
-	return AppygramResult{false}, nil
+func (ac *AppygramClient) sendAppygramTrace(s AppygramTraceWithMessage) (ar AppygramResult, err error) {
+	url := base + "/traces"
+	withKey := AppygramTraceWithKey{AppygramTraceWithMessage: s, ApiKey: ac.ApiKey}
+	bytes, err := json.Marshal(withKey)
+	if err != nil {
+		ar.OK = false
+		return
+	}
+	request, err := ac.buildRequest("POST", url, strings.NewReader(string(bytes)))
+	request.Header.Add("Content-Type", "application/json")
+	if err != nil {
+		ar.OK = false
+		return
+	}
+	response, err := ac.HttpClient.Do(request)
+	if err != nil {
+		ar.OK = false
+		return
+	}
+	if response.StatusCode == 200 {
+		ar.OK = true
+	}
+	return
 }

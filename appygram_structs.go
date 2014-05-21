@@ -13,9 +13,9 @@ type AppygramMessage struct {
 }
 
 type AppygramTrace struct {
-	AppygramMessage
-	Class     string
-	Backtrace [][]string
+	Class     string     `json:"class,omitempty"`
+	Backtrace [][]string `json:"backtrace,omitempty"`
+	Message   string     `json:"message,omitempty"`
 }
 
 type AppygramResult struct {
@@ -35,4 +35,14 @@ type AppygramTopics struct {
 type AppygramMessageWithKey struct {
 	ApiKey string `json:"api_key",omitempty`
 	AppygramMessage
+}
+
+type AppygramTraceWithMessage struct {
+	AppygramMessage
+	Trace AppygramTrace `json:"trace"`
+}
+
+type AppygramTraceWithKey struct {
+	ApiKey string `json:"api_key",omitempty`
+	AppygramTraceWithMessage
 }

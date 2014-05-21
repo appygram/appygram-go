@@ -52,14 +52,15 @@ func TestSendingAppygram(t *testing.T) {
 
 func TestSendingAppygramTrace(t *testing.T) {
 	client := getClient()
-	btrace := MakeErrorBackTrace(make([]byte, 1))
-	tr := AppygramTrace{Class: "appygram", Backtrace: btrace}
-	tr.Name = "Test Gopher"
-	tr.Email = "gopher@gopher.net"
-	tr.Phone = "8889991234"
-	tr.Message = "This is a test message"
-	tr.Topic = "Error"
-	status, err := client.sendAppygramTrace(tr)
+	//btrace := MakeErrorBackTrace(make([]byte, 1))
+	tr := AppygramTrace{Class: "appygram", Message: "Gophers"} //, Backtrace: btrace}
+	m := AppygramMessage{
+		Name: "Test Gopher", Email: "gopher@gopher.net",
+		Phone: "8889991234", Message: "This is a test message",
+		Topic: "Exception",
+	}
+	trm := AppygramTraceWithMessage{AppygramMessage: m, Trace: tr}
+	status, err := client.sendAppygramTrace(trm)
 	if err != nil {
 		t.Errorf("Error from appygram client %s", err.Error())
 	}
