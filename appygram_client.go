@@ -29,7 +29,7 @@ func (ac *AppygramClient) GetTopics() (at AppygramTopics, err error) {
 		at.OK = false
 		return
 	}
-  defer response.Body.Close()
+	defer response.Body.Close()
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		at.OK = false
@@ -62,7 +62,7 @@ func (ac *AppygramClient) SendAppygramMessage(m AppygramMessage) (ar AppygramRes
 		ar.OK = false
 		return
 	}
-  defer response.Body.Close()
+	defer response.Body.Close()
 	if response.StatusCode == 200 {
 		ar.OK = true
 	}
@@ -88,7 +88,7 @@ func (ac *AppygramClient) SendAppygramTrace(s AppygramTraceWithMessage) (ar Appy
 		ar.OK = false
 		return
 	}
-  defer response.Body.Close()
+	defer response.Body.Close()
 	if response.StatusCode == 200 {
 		ar.OK = true
 	}
